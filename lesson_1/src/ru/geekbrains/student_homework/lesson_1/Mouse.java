@@ -6,7 +6,6 @@ import java.awt.event.MouseListener;
 
 public class Mouse extends Frame implements MouseListener {
 
-
     @Override
     public void mouseClicked(MouseEvent e) {
 

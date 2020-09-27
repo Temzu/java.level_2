@@ -75,6 +75,7 @@ public class Storage {
         sprites = Arrays.copyOf(copySprite, length);
     }
 
+    // Проверяем попадали координаты x и y в координаты нашего элемента
     private boolean isXAndYFallsInInterval(int i, int x, int y) {
         boolean isX = (int) sprites[i].getLeft() <= x && (int)sprites[i].getRight() >= x;
         boolean isY = (int) sprites[i].getTop() <= y && (int)sprites[i].getBottom() >= y;

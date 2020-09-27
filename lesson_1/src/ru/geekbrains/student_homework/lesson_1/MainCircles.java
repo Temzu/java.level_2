@@ -26,7 +26,6 @@ public class MainCircles extends JFrame {
         GameCanvas canvas = new GameCanvas(this);
         add(canvas);
         initApplication();
-
         setTitle("Circles");
         setVisible(true);
     }
