@@ -16,6 +16,13 @@ public class Ball extends Sprite {
         halfWidth = halfHeight;
     }
 
+    Ball(int posX, int posY) {
+        halfHeight = 20 + (float)(Math.random() * 50f);
+        halfWidth = halfHeight;
+        y = posY;
+        x = posX;
+    }
+
     @Override
     void render(GameCanvas canvas, Graphics g) {
         g.setColor(color);

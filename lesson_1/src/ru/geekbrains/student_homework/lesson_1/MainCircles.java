@@ -32,7 +32,7 @@ public class MainCircles extends JFrame {
     }
 
     private void initApplication() {
-        storage = new Storage(0);
+        storage = new Storage(10);
     }
 
     void onDrawFrame(GameCanvas canvas, Graphics g, float deltaTime) {

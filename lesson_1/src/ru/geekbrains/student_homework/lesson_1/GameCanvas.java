@@ -4,11 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameCanvas extends JPanel {
-
+    static Mouse mouse = new Mouse();
     long lastFrameTime;
     MainCircles gameController;
     Background background = new Background();
-    Mouse mouse = new Mouse();
+
 
     GameCanvas(MainCircles gameController) {
         lastFrameTime = System.nanoTime();
