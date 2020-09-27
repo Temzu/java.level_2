@@ -32,7 +32,7 @@ public class MainCircles extends JFrame {
     }
 
     private void initApplication() {
-        storage = new Storage(10);
+        storage = new Storage();
     }
 
     void onDrawFrame(GameCanvas canvas, Graphics g, float deltaTime) {
@@ -41,13 +41,13 @@ public class MainCircles extends JFrame {
     }
 
     private void update(GameCanvas canvas, float deltaTime) {
-        for (int i = 0; i <= storage.getIndex(); i++) {
+        for (int i = 0; i < storage.getIndex(); i++) {
             storage.sprites[i].update(canvas,deltaTime);
         }
     }
 
     private void render(GameCanvas canvas, Graphics g) {
-        for (int i = 0; i <= storage.getIndex(); i++) {
+        for (int i = 0; i < storage.getIndex(); i++) {
             storage.sprites[i].render(canvas, g);
         }
     }

@@ -28,8 +28,7 @@ public class Storage {
         if (sprites[length - 1] != null) {
             length += 10;
             Sprite[] copySprites = sprites;
-            sprites = new Sprite[length];
-            sprites = Arrays.copyOf(copySprites, sprites.length);
+            sprites = Arrays.copyOf(copySprites, length);
         }
         sprites[++index] = element;
     }
@@ -42,11 +41,44 @@ public class Storage {
     }
 
     // Удаляет последний добавленный элемент стэка
-    void removeElement() {
+    void removeElement(int x, int y) {
         if (index == -1) {
             return;
         }
-        sprites[index--] = null;
+        for (int i = 0; i < sprites.length; i++) {
+            if (sprites[i] == null){
+                continue;
+            }
+            if (isXAndYFallsInInterval(i, x, y)) {
+                sprites[i] = null;
+                deleteNullValues();
+                index--;
+                break;
+            }
+        }
+    }
+
+    // Удаляет пустые элементы в массиве
+    private void deleteNullValues() {
+        Sprite[] copySprite = new Sprite[sprites.length];
+        for (int i = 0; i < sprites.length; i++) {
+            if (sprites[i] == null) {
+                continue;
+            }
+            for (int j = 0; j < copySprite.length; j++) {
+                if (copySprite[j] == null) {
+                    copySprite[j] = sprites[i];
+                    break;
+                }
+            }
+        }
+        sprites = Arrays.copyOf(copySprite, length);
+    }
+
+    private boolean isXAndYFallsInInterval(int i, int x, int y) {
+        boolean isX = (int) sprites[i].getLeft() <= x && (int)sprites[i].getRight() >= x;
+        boolean isY = (int) sprites[i].getTop() <= y && (int)sprites[i].getBottom() >= y;
+        return isX && isY;
     }
 
     public int getIndex() {

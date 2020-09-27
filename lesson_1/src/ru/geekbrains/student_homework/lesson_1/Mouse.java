@@ -9,17 +9,17 @@ public class Mouse extends Frame implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getButton() == MouseEvent.BUTTON1) {
-            MainCircles.storage.addElement(new Ball(e.getX(), e.getY()));
-        }
-        if (e.getButton() == MouseEvent.BUTTON3) {
-            MainCircles.storage.removeElement();
-        }
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            MainCircles.storage.addElement(new Ball(e.getX(), e.getY()));
+        }
+        if (e.getButton() == MouseEvent.BUTTON3) {
+            MainCircles.storage.removeElement(e.getX(), e.getY());
+        }
     }
 
     @Override

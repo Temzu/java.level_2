@@ -16,11 +16,11 @@ public class Ball extends Sprite {
         halfWidth = halfHeight;
     }
 
-    Ball(int posX, int posY) {
+    Ball(int x, int y) {
         halfHeight = 20 + (float)(Math.random() * 50f);
         halfWidth = halfHeight;
-        y = posY;
-        x = posX;
+        this.x = x;
+        this.y = y;
     }
 
     @Override
