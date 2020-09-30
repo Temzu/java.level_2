@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: ru.geekbrains.student_homework.lesson_1.games.circles.MainCircles
-
