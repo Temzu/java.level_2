@@ -1,4 +1,7 @@
-package ru.geekbrains.student_homework.lesson_1;
+package ru.geekbrains.student_homework.lesson_1.games.circles;
+
+import ru.geekbrains.student_homework.lesson_1.common.GameCanvas;
+import ru.geekbrains.student_homework.lesson_1.common.Sprite;
 
 import java.awt.*;
 
@@ -11,12 +14,12 @@ public class Ball extends Sprite {
     private float vX = (float)(100f + (Math.random() * 200f));
     private float vY = (float)(100f + (Math.random() * 200f));
 
-    Ball() {
+    public Ball() {
         halfHeight = 20 + (float)(Math.random() * 50f);
         halfWidth = halfHeight;
     }
 
-    Ball(int x, int y) {
+    public Ball(int x, int y) {
         halfHeight = 20 + (float)(Math.random() * 50f);
         halfWidth = halfHeight;
         this.x = x;
@@ -24,13 +27,13 @@ public class Ball extends Sprite {
     }
 
     @Override
-    void render(GameCanvas canvas, Graphics g) {
+    public void render(GameCanvas canvas, Graphics g) {
         g.setColor(color);
         g.fillOval((int) getLeft(), (int) getTop(), (int) getWidth(), (int) getHeight());
     }
 
     @Override
-    void update(GameCanvas canvas, float deltaTime) {
+    public void update(GameCanvas canvas, float deltaTime) {
         x += vX * deltaTime;
         y += vY * deltaTime;
         if (getRight() > canvas.getRight()) {

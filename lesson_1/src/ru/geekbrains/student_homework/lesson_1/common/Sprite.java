@@ -1,32 +1,32 @@
-package ru.geekbrains.student_homework.lesson_1;
+package ru.geekbrains.student_homework.lesson_1.common;
 
 import java.awt.*;
 
-public class Sprite {
+public class Sprite implements GameObject{
     protected float x;
     protected float y;
     protected float halfWidth;
     protected float halfHeight;
 
-    protected float getLeft() {
+    public float getLeft() {
         return x - halfWidth;
     }
     protected void setLeft(float left) {
         x = left + halfWidth;
     }
-    protected float getRight() {
+    public float getRight() {
         return x + halfWidth;
     }
     protected void setRight(float right) {
         x = right - halfWidth;
     }
-    protected float getTop() {
+    public float getTop() {
         return y - halfHeight;
     }
     protected void setTop(float top) {
         y = top + halfHeight;
     }
-    protected float getBottom() {
+    public float getBottom() {
         return y + halfHeight;
     }
     protected void setBottom(float bottom) {
@@ -38,6 +38,14 @@ public class Sprite {
     protected float getHeight() {
         return halfHeight * 2f;
     }
-    void update(GameCanvas canvas, float deltaTime) {}
-    void render(GameCanvas canvas, Graphics g) {}
+
+    @Override
+    public void update(GameCanvas canvas, float deltaTime) {
+
+    }
+
+    @Override
+    public void render(GameCanvas canvas, Graphics g) {
+
+    }
 }

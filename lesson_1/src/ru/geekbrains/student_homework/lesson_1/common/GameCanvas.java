@@ -1,14 +1,16 @@
-package ru.geekbrains.student_homework.lesson_1;
+package ru.geekbrains.student_homework.lesson_1.common;
+
+import ru.geekbrains.student_homework.lesson_1.games.circles.Background;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GameCanvas extends JPanel {
     long lastFrameTime;
-    MainCircles gameController;
+    GameCanvasListener gameController;
     Background background = new Background();
 
-    GameCanvas(MainCircles gameController) {
+    public GameCanvas(GameCanvasListener gameController) {
         lastFrameTime = System.nanoTime();
         this.gameController = gameController;
     }

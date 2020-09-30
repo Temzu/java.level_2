@@ -1,15 +1,20 @@
-package ru.geekbrains.student_homework.lesson_1;
+package ru.geekbrains.student_homework.lesson_1.games.circles;
+
+import ru.geekbrains.student_homework.lesson_1.common.GameCanvas;
+import ru.geekbrains.student_homework.lesson_1.common.GameCanvasListener;
+import ru.geekbrains.student_homework.lesson_1.common.Mouse;
+import ru.geekbrains.student_homework.lesson_1.common.Storage;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MainCircles extends JFrame {
+public class MainCircles extends JFrame implements GameCanvasListener {
     private static final int POS_X = 400;
     private static final int POS_Y = 200;
     private static final int WINDOW_WIDTH = 800;
     private static final int WINDOW_HEIGHT = 600;
 
-    static Storage storage;
+    public static Storage storage;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -35,20 +40,20 @@ public class MainCircles extends JFrame {
         storage = new Storage();
     }
 
-    void onDrawFrame(GameCanvas canvas, Graphics g, float deltaTime) {
+    public void onDrawFrame(GameCanvas canvas, Graphics g, float deltaTime) {
         update(canvas, deltaTime);
         render(canvas, g);
     }
 
     private void update(GameCanvas canvas, float deltaTime) {
         for (int i = 0; i <= storage.getIndex(); i++) {
-            storage.sprites[i].update(canvas,deltaTime);
+            storage.gameObjects[i].update(canvas,deltaTime);
         }
     }
 
     private void render(GameCanvas canvas, Graphics g) {
         for (int i = 0; i <= storage.getIndex(); i++) {
-            storage.sprites[i].render(canvas, g);
+            storage.gameObjects[i].render(canvas, g);
         }
     }
 

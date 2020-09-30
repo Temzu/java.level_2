@@ -1,4 +1,4 @@
-package ru.geekbrains.student_homework.lesson_1;
+package ru.geekbrains.student_homework.lesson_1.games.circles;
 
 import java.awt.*;
 
@@ -10,7 +10,7 @@ public class Background{
     private float rateOfChangeG = (float)(Math.random() * 200f);
     private float rateOfChangeB = (float)(Math.random() * 200f);
 
-    Color setColor(float deltaTime) {
+    public Color setColor(float deltaTime) {
         r += rateOfChangeR * deltaTime;
         g += rateOfChangeG * deltaTime;
         b += rateOfChangeB * deltaTime;

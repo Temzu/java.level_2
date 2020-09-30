@@ -1,42 +1,42 @@
-package ru.geekbrains.student_homework.lesson_1;
+package ru.geekbrains.student_homework.lesson_1.common;
 
 import java.util.Arrays;
 
 public class Storage {
     private int index;
     private int length;
-    Sprite[] sprites;
+    public GameObject[] gameObjects;
 
     // Создает пустой стэк
-    Storage() {
+    public Storage() {
         index = -1;
         this.length = 10;
-        this.sprites = new Sprite[this.length];
+        this.gameObjects = new GameObject[this.length];
     }
 
     // Создает пустой или частично/полностью заполненный стэк
-    Storage(int numberOfFilledElements) {
+    public Storage(int numberOfFilledElements, GameObject gameObject) {
         index = -1;
         this.length = numberOfFilledElements + 10;
-        this.sprites = new Sprite[this.length];
-        addCertainNumberOfEl(numberOfFilledElements);
+        this.gameObjects = new GameObject[this.length];
+        addCertainNumberOfEl(numberOfFilledElements, gameObject);
     }
 
     // Добавляет один элемент в стэк
     // Если в массиве нет места, то увеличивает его на 10
-    void addElement(Sprite element) {
-        if (sprites[length - 1] != null) {
+    void addElement(GameObject gameObject) {
+        if (gameObjects[length - 1] != null) {
             length += 10;
-            Sprite[] copySprites = sprites;
-            sprites = Arrays.copyOf(copySprites, length);
+            GameObject[] copySprites = gameObjects;
+            gameObjects = Arrays.copyOf(copySprites, length);
         }
-        sprites[++index] = element;
+        gameObjects[++index] = gameObject;
     }
 
     // Добавляет определенное количество элементов в стэк
-    private void addCertainNumberOfEl(int numberOfFilledElements) {
+    private void addCertainNumberOfEl(int numberOfFilledElements, GameObject gameObject) {
         for (int i = 0; i < numberOfFilledElements; i++) {
-            addElement(new Ball());
+            addElement(gameObject);
         }
     }
 
@@ -45,17 +45,12 @@ public class Storage {
         if (index == -1) {
             return;
         }
-        for (int i = 0; i < sprites.length; i++) {
-            if (sprites[i] == null){
+        for (int i = 0; i < gameObjects.length; i++) {
+            if (gameObjects[i] == null){
                 continue;
             }
             if (isXAndYFallsInInterval(i, x, y)) {
-                System.out.println((int) sprites[i].getLeft() + " left");
-                System.out.println((int) sprites[i].getRight() + " right");
-                System.out.println((int) sprites[i].getTop() + " top");
-                System.out.println((int) sprites[i].getBottom() + " bottom");
-                System.out.println();
-                sprites[i] = null;
+                gameObjects[i] = null;
                 deleteNullValues();
                 index--;
                 break;
@@ -65,26 +60,26 @@ public class Storage {
 
     // Проверяем попали ли координаты x и y в координаты нашего элемента
     private boolean isXAndYFallsInInterval(int i, int x, int y) {
-        boolean isX = (int) sprites[i].getLeft() <= x && (int) sprites[i].getRight() >= x;
-        boolean isY = (int) sprites[i].getTop() <= y && (int) sprites[i].getBottom() >= y;
+        boolean isX = (int) gameObjects[i].getLeft() <= x && (int) gameObjects[i].getRight() >= x;
+        boolean isY = (int) gameObjects[i].getTop() <= y && (int) gameObjects[i].getBottom() >= y;
         return isX && isY;
     }
 
     // Удаляет пустые элементы в массиве
     private void deleteNullValues() {
-        Sprite[] copySprite = new Sprite[sprites.length];
-        for (int i = 0; i < sprites.length; i++) {
-            if (sprites[i] == null) {
+        GameObject[] copyObjects = new GameObject[gameObjects.length];
+        for (int i = 0; i < gameObjects.length; i++) {
+            if (gameObjects[i] == null) {
                 continue;
             }
-            for (int j = 0; j < copySprite.length; j++) {
-                if (copySprite[j] == null) {
-                    copySprite[j] = sprites[i];
+            for (int j = 0; j < gameObjects.length; j++) {
+                if (copyObjects[j] == null) {
+                    copyObjects[j] = gameObjects[i];
                     break;
                 }
             }
         }
-        sprites = Arrays.copyOf(copySprite, length);
+        gameObjects = Arrays.copyOf(copyObjects, length);
     }
 
     public int getIndex() {
