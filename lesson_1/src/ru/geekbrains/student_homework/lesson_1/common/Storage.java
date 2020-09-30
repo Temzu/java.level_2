@@ -24,7 +24,7 @@ public class Storage {
 
     // Добавляет один элемент в стэк
     // Если в массиве нет места, то увеличивает его на 10
-    void addElement(GameObject gameObject) {
+    public void addElement(GameObject gameObject) {
         if (gameObjects[length - 1] != null) {
             length += 10;
             GameObject[] copySprites = gameObjects;

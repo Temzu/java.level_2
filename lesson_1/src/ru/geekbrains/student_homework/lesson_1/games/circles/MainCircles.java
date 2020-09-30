@@ -15,6 +15,7 @@ public class MainCircles extends JFrame implements GameCanvasListener {
     private static final int WINDOW_HEIGHT = 600;
 
     public static Storage storage;
+    public Background background;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -38,6 +39,7 @@ public class MainCircles extends JFrame implements GameCanvasListener {
 
     private void initApplication() {
         storage = new Storage();
+        storage.addElement(new Background());
     }
 
     public void onDrawFrame(GameCanvas canvas, Graphics g, float deltaTime) {

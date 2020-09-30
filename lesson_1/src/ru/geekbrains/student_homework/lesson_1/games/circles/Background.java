@@ -1,16 +1,21 @@
 package ru.geekbrains.student_homework.lesson_1.games.circles;
 
+import ru.geekbrains.student_homework.lesson_1.common.GameCanvas;
+import ru.geekbrains.student_homework.lesson_1.common.GameObject;
+
 import java.awt.*;
 
-public class Background{
+public class Background implements GameObject {
     private float r = 0;
     private float g = 0;
     private float b = 0;
     private float rateOfChangeR = (float)(Math.random() * 200f);
     private float rateOfChangeG = (float)(Math.random() * 200f);
     private float rateOfChangeB = (float)(Math.random() * 200f);
+    Color color;
 
-    public Color setColor(float deltaTime) {
+    @Override
+    public void update(GameCanvas canvas, float deltaTime) {
         r += rateOfChangeR * deltaTime;
         g += rateOfChangeG * deltaTime;
         b += rateOfChangeB * deltaTime;
@@ -39,7 +44,31 @@ public class Background{
             rateOfChangeB = -rateOfChangeB;
             b -= b;
         }
+        color = new Color((int) r, (int) g, (int) b);
+    }
 
-        return new Color((int) r,(int) g,(int) b);
+    @Override
+    public void render(GameCanvas canvas, Graphics g) {
+        canvas.setBackground(color);
+    }
+
+    @Override
+    public float getLeft() {
+        return 0;
+    }
+
+    @Override
+    public float getRight() {
+        return 0;
+    }
+
+    @Override
+    public float getTop() {
+        return 0;
+    }
+
+    @Override
+    public float getBottom() {
+        return 0;
     }
 }
