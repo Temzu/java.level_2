@@ -50,12 +50,24 @@ public class Storage {
                 continue;
             }
             if (isXAndYFallsInInterval(i, x, y)) {
+                System.out.println((int) sprites[i].getLeft() + " left");
+                System.out.println((int) sprites[i].getRight() + " right");
+                System.out.println((int) sprites[i].getTop() + " top");
+                System.out.println((int) sprites[i].getBottom() + " bottom");
+                System.out.println();
                 sprites[i] = null;
                 deleteNullValues();
                 index--;
                 break;
             }
         }
+    }
+
+    // Проверяем попали ли координаты x и y в координаты нашего элемента
+    private boolean isXAndYFallsInInterval(int i, int x, int y) {
+        boolean isX = (int) sprites[i].getLeft() <= x && (int) sprites[i].getRight() >= x;
+        boolean isY = (int) sprites[i].getTop() <= y && (int) sprites[i].getBottom() >= y;
+        return isX && isY;
     }
 
     // Удаляет пустые элементы в массиве
@@ -73,13 +85,6 @@ public class Storage {
             }
         }
         sprites = Arrays.copyOf(copySprite, length);
-    }
-
-    // Проверяем попадали координаты x и y в координаты нашего элемента
-    private boolean isXAndYFallsInInterval(int i, int x, int y) {
-        boolean isX = (int) sprites[i].getLeft() <= x && (int)sprites[i].getRight() >= x;
-        boolean isY = (int) sprites[i].getTop() <= y && (int)sprites[i].getBottom() >= y;
-        return isX && isY;
     }
 
     public int getIndex() {

@@ -25,6 +25,7 @@ public class MainCircles extends JFrame {
         setBounds(POS_X, POS_Y, WINDOW_WIDTH, WINDOW_HEIGHT);
         GameCanvas canvas = new GameCanvas(this);
         add(canvas);
+        canvas.addMouseListener(new Mouse());
         initApplication();
         setTitle("Circles");
         setVisible(true);
@@ -40,14 +41,22 @@ public class MainCircles extends JFrame {
     }
 
     private void update(GameCanvas canvas, float deltaTime) {
-        for (int i = 0; i < storage.getIndex(); i++) {
+        for (int i = 0; i <= storage.getIndex(); i++) {
             storage.sprites[i].update(canvas,deltaTime);
         }
     }
 
     private void render(GameCanvas canvas, Graphics g) {
-        for (int i = 0; i < storage.getIndex(); i++) {
+        for (int i = 0; i <= storage.getIndex(); i++) {
             storage.sprites[i].render(canvas, g);
         }
+    }
+
+    public static int getWindowWidth() {
+        return WINDOW_WIDTH;
+    }
+
+    public static int getWindowHeight() {
+        return WINDOW_HEIGHT;
     }
 }

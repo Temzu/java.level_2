@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameCanvas extends JPanel {
-    static Mouse mouse = new Mouse();
     long lastFrameTime;
     MainCircles gameController;
     Background background = new Background();
@@ -12,7 +11,6 @@ public class GameCanvas extends JPanel {
     GameCanvas(MainCircles gameController) {
         lastFrameTime = System.nanoTime();
         this.gameController = gameController;
-        this.addMouseListener(mouse);
     }
 
     @Override
@@ -23,7 +21,6 @@ public class GameCanvas extends JPanel {
         lastFrameTime = currentTime;
         this.setBackground(background.setColor(deltaTime));
         gameController.onDrawFrame(this, g,deltaTime);
-
         try {
             Thread.sleep(16);
         } catch (InterruptedException e) {
