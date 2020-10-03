@@ -1,5 +1,6 @@
 package task_2;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PhoneBook {
@@ -17,6 +18,27 @@ public class PhoneBook {
         }
         phoneBook.put(lastName, new Person(lastName.trim(), phone, email));
     }
+
+    ArrayList<Long> getNumbers(String lastName) {
+        ArrayList<Long> arrayList = new ArrayList<>();
+        for (String str : phoneBook.keySet()) {
+            if (str.trim().equals(lastName)) {
+                arrayList.add(phoneBook.get(str).phone);
+            }
+        }
+        return arrayList;
+    }
+
+    ArrayList<String> getEmails(String lastName) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        for (String str : phoneBook.keySet()) {
+            if (str.trim().equals(lastName)) {
+                arrayList.add(phoneBook.get(str).email);
+            }
+        }
+        return arrayList;
+    }
+
 
     void findNumber(String lastName) {
         for (String str : phoneBook.keySet()) {

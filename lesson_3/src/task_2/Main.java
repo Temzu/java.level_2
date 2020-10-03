@@ -10,5 +10,8 @@ public class Main{
         phoneBook.findEmail("Зубков");
         System.out.println();
         phoneBook.findNumber("Опарин");
+
+        System.out.println(phoneBook.getEmails("Опарин"));
+        System.out.println(phoneBook.getNumbers("Зубков"));
     }
 }
