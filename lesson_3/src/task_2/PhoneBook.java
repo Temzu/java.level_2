@@ -2,57 +2,41 @@ package task_2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 public class PhoneBook {
-    private final HashMap<String, Person> phoneBook = new HashMap<>();
+    private final HashMap<String, ArrayList<Person>> phoneBook = new HashMap<>();
 
     void put(String lastName, String phone, String email) {
-        for (String str : phoneBook.keySet()) {
-            if (phoneBook.get(str).getPhone() == phone)
-                throw new PhoneBookHasThisNumber("there is this number in the phone book: number " + phone);
-            if (phoneBook.get(str).getEmail().equals(email))
-                throw new PhoneBookHasThisEmail("there is this email in the phone book: email " + email);
-            if (str.equals(lastName)) {
-                lastName += " ";
-            }
+        if (phoneBook.containsKey(lastName)) {
+            ArrayList<Person> people = phoneBook.get(lastName);
+            checkNumberAndEmail(people, phone, email);
+            people.add(new Person(lastName, phone, email));
+        } else {
+            ArrayList<Person> people = new ArrayList<>();
+            people.add(new Person(lastName, phone, email));
+            phoneBook.put(lastName, people);
         }
-        phoneBook.put(lastName, new Person(lastName.trim(), phone, email));
     }
 
     ArrayList<String> getNumbers(String lastName) {
         ArrayList<String> arrayList = new ArrayList<>();
-        for (String str : phoneBook.keySet()) {
-            if (str.trim().equals(lastName)) {
-                arrayList.add(phoneBook.get(str).getPhone());
-            }
+        for (Person person : phoneBook.get(lastName)) {
+            arrayList.add(person.getPhone());
         }
         return arrayList;
     }
 
     ArrayList<String> getEmails(String lastName) {
-        ArrayList<String> arrayList = new ArrayList<>();
-        for (String str : phoneBook.keySet()) {
-            if (str.trim().equals(lastName)) {
-                arrayList.add(phoneBook.get(str).getEmail());
-            }
-        }
-        return arrayList;
+        return phoneBook.get(lastName).stream().map(Person::getEmail).collect(Collectors.toCollection(ArrayList::new));
     }
 
-
-    void findNumber(String lastName) {
-        for (String str : phoneBook.keySet()) {
-            if (str.trim().equals(lastName)) {
-                System.out.println(str.trim() + ": " + phoneBook.get(str).getPhone());
-            }
-        }
-    }
-
-    void findEmail(String lastName) {
-        for (String str : phoneBook.keySet()) {
-            if (str.trim().equals(lastName)) {
-                System.out.println(str.trim() + ": " + phoneBook.get(str).getEmail());
-            }
+    private static void checkNumberAndEmail(ArrayList<Person> people, String phone, String email) {
+        for (Person person : people) {
+            if (person.getPhone().equals(phone))
+                throw new PhoneBookHasThisNumber("there is this number in the phone book: number " + phone);
+            if (person.getEmail().equals(phone))
+                throw new PhoneBookHasThisEmail("there is this email in the phone book: email " + email);
         }
     }
 
