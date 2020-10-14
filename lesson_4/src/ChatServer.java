@@ -1,11 +1,20 @@
 
 public class ChatServer {
+    ServerSocketThread thread;
 
     public void start(int port) {
-        System.out.println("Server started at: " + port);
+        if (thread != null && thread.isAlive()) {
+            System.out.println("Server already started");
+        } else {
+            thread = new ServerSocketThread("Thread of server", 8189, 2000);
+        }
     }
 
     public void stop() {
-        System.out.println("Server stopped");
+        if (thread == null || !thread.isAlive()) {
+            System.out.println("Server is not running");
+        } else {
+            thread.interrupt();
+        }
     }
 }

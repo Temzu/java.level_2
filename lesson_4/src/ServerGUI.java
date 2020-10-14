@@ -36,7 +36,7 @@ public class ServerGUI extends JFrame implements ActionListener, Thread.Uncaught
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         if (source == btnStart) {
-            chatServer.start(8080);
+            chatServer.start(8189);
         } else if (source == btnStop) {
             chatServer.stop();
         } else {

@@ -10,7 +10,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
     private static final int WIDTH = 400;
     private static final int HEIGHT = 300;
 
-    private final TextArea log = new TextArea();
+    private final JTextArea log = new JTextArea();
     private final JPanel panelTop = new JPanel(new GridLayout(2,3));
 
     private final TextField tfIpAddress = new TextField("127.0.0.1");
@@ -84,6 +84,7 @@ public class ClientGUI extends JFrame implements ActionListener, Thread.Uncaught
             @Override
             public void run() {
                 log.append(logMessage + "\n");
+                log.setCaretPosition(log.getDocument().getLength());
             }
         });
     }
