@@ -66,7 +66,7 @@ public class ChatServer implements ServerSocketThreadListener, SockedThreadListe
     public void onSocketAccepted(ServerSocketThread thread, ServerSocket server, Socket socket) {
         putLog("Client connected");
         String name = "SocketThread" + socket.getInetAddress() + ":" + socket.getPort();
-        socketThreads.add(new SocketThread(this, name, socket));
+        new SocketThread(this, name, socket);
     }
 
     @Override
