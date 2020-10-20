@@ -121,17 +121,12 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
             return;
         }
         client.authAccept(nickname);
-        sendToAllAuthorizedClients(sendFormat(Library.getTypeBroadcast("Server: ", nickname + " connected")));
+
     }
 
-    private String sendFormat(String message) {
-        String[] arr = message.split(Library.DELIMITER);
-        String msg = arr[arr.length - 2] + arr[arr.length - 1];
-        return msg;
-    }
 
     private void handleAuthMessage(ClientThread client, String message) {
-        sendToAllAuthorizedClients(sendFormat(Library.getTypeBroadcast(client.getNickName() + ": ", message)));
+        
     }
 
     private void sendToAllAuthorizedClients(String message) {
