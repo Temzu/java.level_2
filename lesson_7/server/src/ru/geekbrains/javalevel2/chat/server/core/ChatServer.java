@@ -123,7 +123,7 @@ public class ChatServer implements ServerSocketThreadListener, SocketThreadListe
         client.authAccept(nickname);
         sendToAllAuthorizedClients(sendFormat(Library.getTypeBroadcast("Server: ", nickname + " connected")));
     }
-
+    //
     private String sendFormat(String message) {
         String[] arr = message.split(Library.DELIMITER);
         String msg = arr[arr.length - 2] + arr[arr.length - 1];
